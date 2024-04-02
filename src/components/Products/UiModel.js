@@ -9,7 +9,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Badge from '@mui/material/Badge';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import { addCartApiUrl, eComProductsApiUrl } from '../../util';
+import { addCartApiUrl, EComProductsApiUrl } from '../../util';
 
 export default function UiModel() {
     const [totalValue, setTotalValue] = React.useState(0);
@@ -20,7 +20,7 @@ export default function UiModel() {
 
     useEffect(() => {
         async function getProducts() {
-            const response = await fetch(eComProductsApiUrl);
+            const response = await fetch(EComProductsApiUrl);
             const body = await response.json();
             setItems(body);
             setloader(false)
@@ -37,17 +37,17 @@ export default function UiModel() {
             .catch((err) => {
             });
 
-        // setBadgeValue((prevState) => prevState + 1)
-        // let isChanged = true;
-        // cartList.map((cart) => {
-        //     if (cart.id == arg.id) {
-        //         cart.quantity = cart.quantity + 1
-        //         setcartList(cartList)
-        //         setTotalValue(totalValue + arg.price)
-        //         isChanged = false;
-        //         return
-        //     }
-        // });
+        setBadgeValue((prevState) => prevState + 1)
+        let isChanged = true;
+        cartList.map((cart) => {
+            if (cart.id == arg.id) {
+                cart.quantity = cart.quantity + 1
+                setcartList(cartList)
+                setTotalValue(totalValue + arg.price)
+                isChanged = false;
+                return
+            }
+        });
 
         // if (isChanged) {
         //     arg["quantity"] = 1
